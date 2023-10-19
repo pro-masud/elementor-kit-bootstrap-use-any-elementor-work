@@ -118,6 +118,15 @@ class Widget_1 extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'description',
+			[
+				'label'	=> esc_html__('Description', 'elementor-test'),
+				'type'	=> \Elementor\Controls_Manager::TEXTAREA,
+				'default'	=> "lorem ispsam text here",
+			]
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -138,7 +147,62 @@ class Widget_1 extends \Elementor\Widget_Base {
 					'left'		=> esc_html('Left', 'elementor-test'),
 					'right'		=> esc_html('Right', 'elementor-test'),
 					'center'		=> esc_html('Center', 'elementor-test'),
-				]
+				],
+				'selectors'	=> [
+					'{{WRAPPER}} h2.headding' => 'text-align:{{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'description_alintment',
+			[
+				'label'	=> esc_html__('Alientment', 'elementor-test'),
+				'type'	=> \Elementor\Controls_Manager::SELECT,
+				'default'	=> "center",
+				'options'	=> [
+					'left'		=> esc_html('Left', 'elementor-test'),
+					'right'		=> esc_html('Right', 'elementor-test'),
+					'center'		=> esc_html('Center', 'elementor-test'),
+				],
+				'selectors'	=> [
+					'{{WRAPPER}} p' => 'text-align:{{VALUE}}',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'color',
+			[
+				'label' => esc_html__( 'Color', 'elementor-test' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+		$this->add_control(
+			'header_color',
+			[
+				'label'	=> esc_html__('Heading Color', 'elementor-test'),
+				'type'	=> \Elementor\Controls_Manager::COLOR,
+				'default'	=> "#000",
+				'selectors'	=> [
+					'{{WRAPPER}} h2.headding' => 'color:{{VALUE}}',
+				],
+			]
+		);
+
+		$this->add_control(
+			'description_color',
+			[
+				'label'	=> esc_html__('Description Color', 'elementor-test'),
+				'type'	=> \Elementor\Controls_Manager::COLOR,
+				'default'	=> "red",
+				'selectors'	=> [
+					'{{WRAPPER}} p' => 'color:{{VALUE}}',
+				],
 			]
 		);
 
@@ -156,10 +220,11 @@ class Widget_1 extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$heading = $settings['somthing_text'];
-		$text_alintment = $settings['text_alintment'];
+		$description = $settings['description'];
 		?>
 		
-		<h2 style="text-align: <?php echo esc_attr($text_alintment); ?>"><?php echo esc_html($heading) ; ?></h2>
+		<h2 class="headding"><?php echo esc_html($heading) ; ?></h2>
+		<p><?php echo esc_html($description) ; ?></p>
 
 		<?php
 	}
