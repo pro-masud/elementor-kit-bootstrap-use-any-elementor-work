@@ -1,8 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
-
 /**
  * Elementor List Widget.
  *
@@ -110,7 +106,7 @@ class Widget_1 extends \Elementor\Widget_Base {
 
 
 		$this->add_control(
-			'somthing_text',
+			'heading',
 			[
 				'label'	=> esc_html__('Somthing Text', 'elementor-test'),
 				'type'	=> \Elementor\Controls_Manager::TEXT,
@@ -149,7 +145,7 @@ class Widget_1 extends \Elementor\Widget_Base {
 					'center'		=> esc_html('Center', 'elementor-test'),
 				],
 				'selectors'	=> [
-					'{{WRAPPER}} h2.headding' => 'text-align:{{VALUE}}',
+					'{{WRAPPER}} h2' => 'text-align:{{VALUE}}',
 				],
 			]
 		);
@@ -189,7 +185,7 @@ class Widget_1 extends \Elementor\Widget_Base {
 				'type'	=> \Elementor\Controls_Manager::COLOR,
 				'default'	=> "#000",
 				'selectors'	=> [
-					'{{WRAPPER}} h2.headding' => 'color:{{VALUE}}',
+					'{{WRAPPER}} h2' => 'color:{{VALUE}}',
 				],
 			]
 		);
@@ -219,11 +215,19 @@ class Widget_1 extends \Elementor\Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		$heading = $settings['somthing_text'];
+		$heading = $settings['heading'];
 		$description = $settings['description'];
+
+		$this->add_inline_editing_attributes('heading', 'basic');
+		$this->add_render_attribute(
+			'heading',
+			[
+				'class' => [ 'heading', $heading ],
+			]
+		);
 		?>
 		
-		<h2 class="headding"><?php echo esc_html($heading) ; ?></h2>
+		<h2 <?php echo $this->get_render_attribute_string('heading') ?>><?php echo esc_html($heading) ; ?></h2>
 		<p><?php echo esc_html($description) ; ?></p>
 
 		<?php
@@ -239,7 +243,19 @@ class Widget_1 extends \Elementor\Widget_Base {
 	 */
 	protected function content_template() {
 		?>
-
+			<#
+				view.addInlineEditingAttributes('heading', 'basic');
+				view.addRenderAttribute(
+				'heading',
+					{
+						'class': [ 'heading', settings.heading ],
+					}
+				);
+			#>
+			<h2 {{{view.getRenderAttributeString('heading')}}}>{{{settings.heading}}}</h2>
+			<p>
+				{{{settings.description}}}
+			</p>
 		<?php
 	}
 
