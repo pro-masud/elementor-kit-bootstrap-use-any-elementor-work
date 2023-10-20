@@ -6,7 +6,7 @@
  *
  * @since 1.0.0
  */
-class SelectTwo extends \Elementor\Widget_Base {
+class Choose extends \Elementor\Widget_Base {
 
 	/**
 	 * Get widget name.
@@ -18,7 +18,7 @@ class SelectTwo extends \Elementor\Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'selecttwo';
+		return 'choose';
 	}
 
 	/**
@@ -31,7 +31,7 @@ class SelectTwo extends \Elementor\Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Elementor Test Select Two', 'elementor-test' );
+		return esc_html__( 'Elementor Test Choose Options', 'elementor-test' );
 	}
 
 	/**
@@ -106,18 +106,32 @@ class SelectTwo extends \Elementor\Widget_Base {
 
 
 		$this->add_control(
-			'list',
+			'list_alienment',
 			[
 				'label' => esc_html__( 'Show Elements', 'elementor-test' ),
-				'type' => \Elementor\Controls_Manager::SELECT2,
+				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'label_block' => true,
-				'multiple' => true,
+                'toggle'    => false,
+                'default'   => 'center',
 				'options' => [
-					'title'  => esc_html__( 'Title', 'elementor-test' ),
-					'description' => esc_html__( 'Description', 'elementor-test' ),
-					'button' => esc_html__( 'Button', 'elementor-test' ),
+					'left'  => [
+                        'title' => esc_html__('Left', 'elementor-test'),
+                        'icon'  => 'eicon-text-align-left'
+                    ],
+                    'center'  => [
+                        'title' => esc_html__('Center', 'elementor-test'),
+                        'icon'  => 'eicon-text-align-center'
+                    ],
+                    'right'  => [
+                        'title' => esc_html__('Right', 'elementor-test'),
+                        'icon'  => 'eicon-text-align-right'
+                    ],
+                    'justify'  => [
+                        'title' => esc_html__('Justify', 'elementor-test'),
+                        'icon'  => 'eicon-text-align-justify'
+                    ],
 				],
-				'default' => [ 'title', 'description' ],
+                
 			]
 		);
 
@@ -136,13 +150,8 @@ class SelectTwo extends \Elementor\Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 
-		if ( $settings['list'] ) {
-			echo '<ul>';
-			foreach ( $settings['list'] as $item ) {
-				echo '<li>' . $item . '</li>';
-			}
-			echo '</ul>';
-		}
+        echo $settings['list_alienment'];
+
 	}
 
 	/**
@@ -155,13 +164,7 @@ class SelectTwo extends \Elementor\Widget_Base {
 	 */
 	protected function content_template() {
 		?>
-			<# if ( settings.list.length ) { #>
-                <ul>
-                    <# _.each( settings.list, function( item ) { #>
-                        <li>{{{ item }}}</li>
-                    <# } ) #>
-                </ul>
-		    <# } #>
+            {{{settings.list_alienment}}}
 		<?php
 	}
 
