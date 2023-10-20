@@ -204,42 +204,6 @@ class Widget_1 extends \Elementor\Widget_Base {
 
 		$this->end_controls_section();
 
-
-		$this->start_controls_section(
-			'images',
-			[
-				'label' => esc_html__( 'Image', 'elementor-test' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-			]
-		);
-
-		$this->add_control(
-			'image',
-			[
-				'label'	=> esc_html__('Image', 'elementor-test'),
-				'type'	=> \Elementor\Controls_Manager::MEDIA,
-				'default'	=> [
-					'url'	=>  \Elementor\Utils::get_placeholder_image_src(),
-				],
-			]
-		);
-
-		$this->add_control(
-			'custom_dimension',
-			[
-				'label' => esc_html__( 'Image Dimension', 'elementor-test' ),
-				'type' => \Elementor\Controls_Manager::IMAGE_DIMENSIONS,
-				'description' => esc_html__( 'Crop the original image size to any custom size. Set custom width or height to keep the original size ratio.', 'elementor-test' ),
-				'default' => [
-					'width' => '',
-					'height' => '',
-				],
-			]
-		);
-
-
-
-		$this->end_controls_section();
 	}
 
 	/**
@@ -254,7 +218,6 @@ class Widget_1 extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$heading = $settings['heading'];
 		$description = $settings['description'];
-		$image = $settings['image']['url'];
 
 		$this->add_inline_editing_attributes('heading', 'basic');
 		$this->add_render_attribute(
@@ -269,8 +232,6 @@ class Widget_1 extends \Elementor\Widget_Base {
 		
 		<h2 <?php echo $this->get_render_attribute_string('heading') ?>><?php echo esc_html($heading) ; ?></h2>
 		<p <?php echo $this->get_render_attribute_string('description') ?> ><?php echo esc_html($description) ; ?></p>
-		
-		<img src="<?php echo esc_attr($image); ?>" alt="">
 
 		<?php
 	}
@@ -299,8 +260,6 @@ class Widget_1 extends \Elementor\Widget_Base {
 			<p {{{view.getRenderAttributeString('description')}}}>
 				{{{settings.description}}}
 			</p>
-
-			<img src="{{{}}}" alt="">
 		<?php
 	}
 

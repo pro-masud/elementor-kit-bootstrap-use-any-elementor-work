@@ -226,9 +226,11 @@ final class Elementor_Test {
 
 		require_once( __DIR__ . '/widgets/widget-1.php' );
 		require_once( __DIR__ . '/widgets/image-widgets.php' );
+		require_once( __DIR__ . '/widgets/selecttwo.php' );
 
 		$widgets_manager->register( new \Widget_1() );
 		$widgets_manager->register( new \Image_widgets() );
+		$widgets_manager->register( new \SelectTwo() );
 
 		
 
