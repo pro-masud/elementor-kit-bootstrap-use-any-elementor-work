@@ -225,10 +225,10 @@ final class Elementor_Test {
 	public function register_widgets( $widgets_manager ) {
 
 		require_once( __DIR__ . '/widgets/widget-1.php' );
-		require_once( __DIR__ . '/widgets/test.php' );
+		require_once( __DIR__ . '/widgets/image-widgets.php' );
 
 		$widgets_manager->register( new \Widget_1() );
-		$widgets_manager->register( new \Widget_2() );
+		$widgets_manager->register( new \Image_widgets() );
 
 		
 
