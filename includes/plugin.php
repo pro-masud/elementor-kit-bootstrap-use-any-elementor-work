@@ -230,6 +230,7 @@ final class Elementor_Test {
 		require_once( __DIR__ . '/widgets/choose.php' );
 		require_once( __DIR__ . '/widgets/gallery.php' );
 		require_once( __DIR__ . '/widgets/icons.php' );
+		require_once( __DIR__ . '/widgets/fonts.php' );
 
 		$widgets_manager->register( new \Widget_1() );
 		$widgets_manager->register( new \Image_widgets() );
@@ -237,6 +238,7 @@ final class Elementor_Test {
 		$widgets_manager->register( new \Choose() );
 		$widgets_manager->register( new \Gallery() );
 		$widgets_manager->register( new \icons() );
+		$widgets_manager->register( new \Fonts() );
 
 		
 

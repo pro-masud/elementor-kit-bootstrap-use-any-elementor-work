@@ -179,28 +179,38 @@ class Widget_1 extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'header_color',
+			'border_popover_toggle',
 			[
-				'label'	=> esc_html__('Heading Color', 'elementor-test'),
-				'type'	=> \Elementor\Controls_Manager::COLOR,
-				'default'	=> "#000",
-				'selectors'	=> [
-					'{{WRAPPER}} h2' => 'color:{{VALUE}}',
-				],
+				'label' => esc_html__( 'Border', 'elementor-test' ),
+				'type' => \Elementor\Controls_Manager::POPOVER_TOGGLE,
 			]
 		);
 
-		$this->add_control(
-			'description_color',
-			[
-				'label'	=> esc_html__('Description Color', 'elementor-test'),
-				'type'	=> \Elementor\Controls_Manager::COLOR,
-				'default'	=> "red",
-				'selectors'	=> [
-					'{{WRAPPER}} p' => 'color:{{VALUE}}',
-				],
-			]
-		);
+		$this->start_popover();
+			$this->add_control(
+				'header_color',
+				[
+					'label'	=> esc_html__('Heading Color', 'elementor-test'),
+					'type'	=> \Elementor\Controls_Manager::COLOR,
+					'default'	=> "#000",
+					'selectors'	=> [
+						'{{WRAPPER}} h2' => 'color:{{VALUE}}',
+					],
+				]
+			);
+
+			$this->add_control(
+				'description_color',
+				[
+					'label'	=> esc_html__('Description Color', 'elementor-test'),
+					'type'	=> \Elementor\Controls_Manager::COLOR,
+					'default'	=> "red",
+					'selectors'	=> [
+						'{{WRAPPER}} p' => 'color:{{VALUE}}',
+					],
+				]
+			);
+		$this->end_popover();
 
 		$this->end_controls_section();
 
