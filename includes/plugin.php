@@ -229,12 +229,14 @@ final class Elementor_Test {
 		require_once( __DIR__ . '/widgets/selecttwo.php' );
 		require_once( __DIR__ . '/widgets/choose.php' );
 		require_once( __DIR__ . '/widgets/gallery.php' );
+		require_once( __DIR__ . '/widgets/icons.php' );
 
 		$widgets_manager->register( new \Widget_1() );
 		$widgets_manager->register( new \Image_widgets() );
 		$widgets_manager->register( new \SelectTwo() );
 		$widgets_manager->register( new \Choose() );
 		$widgets_manager->register( new \Gallery() );
+		$widgets_manager->register( new \icons() );
 
 		
 
